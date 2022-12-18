@@ -1,13 +1,14 @@
-from pathlib import Path
 from os import getenv
+from pathlib import Path
 from dotenv import load_dotenv
+
 
 load_dotenv()
 
 SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 
-SECRET_KEY = getenv("DJANGO_SECRET_KEY", default='INVALID')
+SECRET_KEY = getenv("DJANGO_SECRET_KEY", default="INVALID")
 DEBUG = getenv("DJANGO_DEBUG", default=False)
 ALLOWED_HOSTS = getenv("DJANGO_ALLOWED_HOSTS", default="").split(",")
 
