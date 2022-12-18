@@ -32,6 +32,13 @@
             "index": "pypi",
             "version": "==4.1.4"
         },
+        "dotenv-python": {
+            "hashes": [
+                "sha256:362e170ca8fd69a70c1aca1fda2ddad0ac270e161e81e59f4039ec11decc14fa"
+            ],
+            "index": "pypi",
+            "version": "==0.0.1"
+        },
         "sqlparse": {
             "hashes": [
                 "sha256:0323c0ec29cd52bceabc1b4d9d579e311f3e4961b98d174201d5622a23b85e34",
