@@ -1,11 +1,5 @@
-from django.http import HttpResponse
-from django.urls import path
-
-
-def signup(variable):
-    return HttpResponse("Hellow")
-
+from django.urls import include, path
 
 urlpatterns = [
-    path("signup/", signup),
+    path("exchange-rates/", include("exchange_rates.urls")),
 ]
