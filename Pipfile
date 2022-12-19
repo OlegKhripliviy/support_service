@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 Django = "~=4.1.4"
+requests = "*"
+pydantic = "*"
 
 [dev-packages]
 black = "~=22.10.0"
