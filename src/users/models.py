@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
+from django.db import models
 
 
 class User(AbstractBaseUser):
@@ -13,4 +13,3 @@ class User(AbstractBaseUser):
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
-
