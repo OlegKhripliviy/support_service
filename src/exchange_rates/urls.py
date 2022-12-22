@@ -1,4 +1,4 @@
-from api import convert
+from exchange_rates.api import convert
 from django.urls import path
 
 urlpatterns = [
