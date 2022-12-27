@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "exchange_rates",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -83,8 +84,10 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 ALPHA_VANTAGE_API_KEY = os.getenv("ALPHA_VANTAGE_API_KEY")
 ALPHA_VANTAGE_BASE_URL = os.getenv(
     "ALPHA_VANTAGE_BASE_URL", default="https://www.alphavantage.co"
 )
+
+# Set custom user model
+AUTH_USER_MODEL = "users.User"

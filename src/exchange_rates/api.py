@@ -1,7 +1,7 @@
 import requests
 from django.http import JsonResponse
 
-from src.exchange_rates.services import AlphavantageResponse, url_creator
+from exchange_rates.services import AlphavantageResponse, url_creator
 
 
 def convert(request):
