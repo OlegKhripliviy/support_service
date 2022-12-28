@@ -21,4 +21,3 @@ class UserManager(_UserManager):
         extra_fields["is_staff"] = False
         extra_fields["role"] = Role.USER
         return self._create_user(email, password, **extra_fields)
-
