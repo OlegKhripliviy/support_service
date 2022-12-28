@@ -3,7 +3,6 @@ from django.contrib.auth.hashers import make_password
 
 from users.constants.roles import Role
 
-
 class UserManager(_UserManager):
     def create_superuser(self, email=None, password=None, **extra_fields):
         extra_fields["is_staff"] = True
