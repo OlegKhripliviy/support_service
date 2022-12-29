@@ -2,10 +2,8 @@ import json
 
 from django.http import JsonResponse
 
-from exchange_rates.domain import (
-    ExchangeRatesServiceRequest,
-    ExchangeRatesServiceResponse,
-)
+from exchange_rates.domain import (ExchangeRatesServiceRequest,
+                                   ExchangeRatesServiceResponse)
 from exchange_rates.services import ExchangeRatesService
 
 
