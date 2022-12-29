@@ -1,9 +1,11 @@
 import requests
 from django.conf import settings
 
-from exchange_rates.domain import (AlphavantageResponse,
-                                   ExchangeRatesServiceRequest,
-                                   ExchangeRatesServiceResponse)
+from exchange_rates.domain import (
+    AlphavantageResponse,
+    ExchangeRatesServiceRequest,
+    ExchangeRatesServiceResponse,
+)
 
 
 class ExchangeRatesService:
