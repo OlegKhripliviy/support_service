@@ -33,7 +33,8 @@ class Migration(migrations.Migration):
                 (
                     "ticket",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="tickets.ticket"
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="tickets.ticket",
                     ),
                 ),
                 (

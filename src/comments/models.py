@@ -7,7 +7,9 @@ from tickets.models import Ticket
 
 class Comment(TimeStampMixin):
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL, on_delete=models.DO_NOTHING, related_name="comments"
+        settings.AUTH_USER_MODEL,
+        on_delete=models.DO_NOTHING,
+        related_name="comments",
     )
     body = models.TextField()
     ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
