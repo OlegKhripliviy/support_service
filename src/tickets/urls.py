@@ -1,7 +1,8 @@
 from django.urls import path
-from tickets.serializers import TicketSerializer
 from rest_framework.generics import ListAPIView
+
 from tickets.models import Ticket
+from tickets.serializers import TicketSerializer
 
 
 class TicketsGet(ListAPIView):
@@ -9,6 +10,4 @@ class TicketsGet(ListAPIView):
     serializer_class = TicketSerializer
 
 
-urlpatterns = [
-    path("", TicketsGet.as_view())
-]
+urlpatterns = [path("", TicketsGet.as_view())]

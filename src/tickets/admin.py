@@ -1,6 +1,7 @@
 from django.contrib import admin  # noqa  F401
-from tickets.models import Ticket
+
 from shared.django.admin import TimeStampReadonlyAdmin
+from tickets.models import Ticket
 
 
 @admin.register(Ticket)
