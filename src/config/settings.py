@@ -22,6 +22,8 @@ DJANGO_APPS = [
     "django.contrib.staticfiles",
 ]
 
+THIRD_PARTY_APPS = ['rest_framework']
+
 LOCAL_APPS = [
     "exchange_rates.apps.ExchangeRatesConfig",
     "users.apps.UsersConfig",
@@ -31,7 +33,7 @@ LOCAL_APPS = [
     "shared.apps.SharedConfig",
 ]
 
-INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS
+INSTALLED_APPS = DJANGO_APPS + LOCAL_APPS + THIRD_PARTY_APPS
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
