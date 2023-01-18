@@ -12,7 +12,7 @@ class TicketSerializer(serializers.ModelSerializer):
 class TicketLightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ['customer', 'manager', 'header']
+        fields = ["customer", "manager", "header"]
 
 
 class TicketCreateSerializer(serializers.ModelSerializer):
