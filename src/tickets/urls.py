@@ -1,7 +1,6 @@
 from django.http import JsonResponse
 from django.urls import path
-from rest_framework.decorators import api_view
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import CreateAPIView, ListAPIView
 
 from tickets.models import Ticket
 from tickets.serializers import (
@@ -22,16 +21,13 @@ def get_ticket(request, id_: int) -> JsonResponse:
     return JsonResponse(serializer.data)
 
 
-@api_view(["POST"])
-def create_ticket(request):
-    serializer = TicketCreateSerializer(data=request.data)
-    serializer.is_valid(raise_exception=True)
-    Ticket.objects.create(**serializer.validated_data)
-    return JsonResponse(serializer.validated_data)
+class TicketCreateApi(CreateAPIView):
+    queryset = Ticket.objects.all()
+    serializer_class = TicketCreateSerializer
 
 
 urlpatterns = [
-    path("", TicketsGet.as_view()),
-    path("create/", create_ticket),
+    path("list/", TicketsGet.as_view()),
+    path("create/", TicketCreateApi.as_view()),
     path("<int:id_>", get_ticket),
 ]
