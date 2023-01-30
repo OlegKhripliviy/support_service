@@ -11,7 +11,8 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         fields = ["email", "password"]
         extra_kwargs = {"password": {"write_only": True}}
 
-    def validate(self, attrs):
+    @staticmethod
+    def create_password(attrs):
         attrs["password"] = make_password(attrs["password"])
         return attrs
 

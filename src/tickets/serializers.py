@@ -3,19 +3,17 @@ from rest_framework import serializers
 from tickets.models import Ticket
 
 
-class TicketSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ticket
-        fields = "__all__"
-
-
 class TicketLightSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ticket
-        fields = ["customer", "manager", "header"]
+        exclude = ["body"]
 
 
-class TicketCreateSerializer(serializers.ModelSerializer):
+class TicketSerializer(serializers.ModelSerializer):
+    customer = serializers.HiddenField(
+        default=serializers.CurrentUserDefault()
+    )
+
     class Meta:
         model = Ticket
-        fields = ["header", "body"]
+        fields = ["id", "header", "body", "customer"]
