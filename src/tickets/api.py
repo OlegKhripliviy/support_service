@@ -1,14 +1,12 @@
-from tickets.serializers import (
-    TicketSerializer,
-    TicketLightSerializer,
-)
 from django.http import JsonResponse
-from tickets.models import Ticket
-from rest_framework.viewsets import ModelViewSet
 from rest_framework import status
 from rest_framework.response import Response
-from shared.serializers import ResponseSerializer, ResponseMultiSerializer
-from tickets.permissions import RoleIsAdmin, RoleIsUser, IsOwner, RoleIsManager
+from rest_framework.viewsets import ModelViewSet
+
+from shared.serializers import ResponseMultiSerializer, ResponseSerializer
+from tickets.models import Ticket
+from tickets.permissions import IsOwner, RoleIsAdmin, RoleIsManager, RoleIsUser
+from tickets.serializers import TicketLightSerializer, TicketSerializer
 
 
 class TicketAPISet(ModelViewSet):
@@ -57,7 +55,9 @@ class TicketAPISet(ModelViewSet):
         instance: Ticket = self.get_object()
 
         context: dict = {"request": self.request}
-        serializer = TicketSerializer(instance, data=request.data, context=context)
+        serializer = TicketSerializer(
+            instance, data=request.data, context=context
+        )
         serializer.is_valid(raise_exception=True)
         serializer.save()
 

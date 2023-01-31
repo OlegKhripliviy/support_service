@@ -15,10 +15,7 @@ urlpatterns = [
     path(
         "<int:pk>/",
         TicketAPISet.as_view(
-            {
-                "get": "retrieve",
-                "put": "update",
-                "delete": "destroy"}
+            {"get": "retrieve", "put": "update", "delete": "destroy"}
         ),
     ),
 ]
