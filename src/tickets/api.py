@@ -7,6 +7,7 @@ from shared.serializers import ResponseMultiSerializer, ResponseSerializer
 from tickets.models import Ticket
 from tickets.permissions import IsOwner, RoleIsAdmin, RoleIsManager, RoleIsUser
 from tickets.serializers import TicketLightSerializer, TicketSerializer
+from users.constants import Role
 
 
 class TicketAPISet(ModelViewSet):
@@ -37,12 +38,16 @@ class TicketAPISet(ModelViewSet):
 
         return JsonResponse(response.data, status=status.HTTP_201_CREATED)
 
-    def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+    def list(self, request):
+        if self.request.user.role == Role.USER:
+            queryset = Ticket.objects.all()
+        else:
+            queryset = Ticket.objects.filter(manager=self.request.user)
+
         serializer = TicketLightSerializer(queryset, many=True)
         response = ResponseMultiSerializer({"results": serializer.data})
 
-        return Response(response.data)
+        return JsonResponse(response.data)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

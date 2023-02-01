@@ -1,3 +1,9 @@
-from django.shortcuts import render  # noqa  F401
+from rest_framework.generics import ListAPIView
 
-# Create your views here.
+
+class CommentsListAPI(ListAPIView):
+    pass
+    # serializer_class = ...
+    #
+    # def get_queryset(self):
+    #     pass
