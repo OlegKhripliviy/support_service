@@ -20,7 +20,8 @@ class Comment(TimeStampMixin):
     )
     ticket = models.ForeignKey(
         Ticket,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name="comments"
     )
 
     body = models.TextField()

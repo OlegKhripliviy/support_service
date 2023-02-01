@@ -38,7 +38,7 @@ class TicketAPISet(ModelViewSet):
 
         return JsonResponse(response.data, status=status.HTTP_201_CREATED)
 
-    def list(self, request):
+    def list(self, request, *args, **kwargs):
         if self.request.user.role == Role.USER:
             queryset = Ticket.objects.all()
         else:
