@@ -10,7 +10,7 @@ class TicketsAdmin(TimeStampReadonlyAdmin):
     list_display = ["id", "header", "truncated_body"]
     list_display_links = ["id", "header"]
 
-    def truncated_body(self, obj):
-        return Truncator(obj.body).chars(100, truncate='...')
+    def truncated_body(self, obj) -> str:
+        return Truncator(obj.body).chars(100, truncate="...")
 
-    truncated_body.short_description = 'body'
+    truncated_body.short_description = "body"  # type: ignore

@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from shared.serializers import ResponseMultiSerializer, ResponseSerializer
@@ -17,7 +16,7 @@ class TicketAPISet(ModelViewSet):
         if self.action == "create":
             permission_classes = [RoleIsUser]
         elif self.action == "list":
-            permission_classes = [RoleIsAdmin | RoleIsManager]
+            permission_classes = [RoleIsAdmin | RoleIsManager | RoleIsUser]
         elif self.action == "retrieve":
             permission_classes = (IsOwner | RoleIsAdmin | RoleIsManager,)
         elif self.action == "update":
@@ -39,10 +38,12 @@ class TicketAPISet(ModelViewSet):
         return JsonResponse(response.data, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
-        if self.request.user.role == Role.USER:
-            queryset = Ticket.objects.all()
+        if self.request.user.role == Role.ADMIN:
+            queryset = self.get_queryset()
+        elif self.request.user.role == Role.MANAGER:
+            queryset = Ticket.objects.filter(manager=request.user)
         else:
-            queryset = Ticket.objects.filter(manager=self.request.user)
+            queryset = Ticket.objects.filter(customer=self.request.user)
 
         serializer = TicketLightSerializer(queryset, many=True)
         response = ResponseMultiSerializer({"results": serializer.data})

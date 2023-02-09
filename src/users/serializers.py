@@ -21,7 +21,7 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         validated_data["password"] = make_password(validated_data["password"])
         validated_data["role"] = Role.USER
 
-        raise_errors_on_nested_writes('create', self, validated_data)
+        raise_errors_on_nested_writes("create", self, validated_data)
 
         ModelClass = self.Meta.model
 
@@ -36,14 +36,12 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         except TypeError:
             tb = traceback.format_exc()
             msg = (
-                (
-                    ModelClass.__name__,
-                    ModelClass._default_manager.name,
-                    ModelClass.__name__,
-                    ModelClass._default_manager.name,
-                    self.__class__.__name__,
-                    tb
-                )
+                ModelClass.__name__,
+                ModelClass._default_manager.name,
+                ModelClass.__name__,
+                ModelClass._default_manager.name,
+                self.__class__.__name__,
+                tb,
             )
             raise TypeError(msg)
 
