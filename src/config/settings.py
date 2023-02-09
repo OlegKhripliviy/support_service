@@ -3,10 +3,6 @@ from datetime import timedelta
 from os import getenv
 from pathlib import Path
 
-from dotenv import load_dotenv
-
-load_dotenv()
-
 SRC_DIR = Path(__file__).resolve().parent.parent
 ROOT_DIR = SRC_DIR.parent
 

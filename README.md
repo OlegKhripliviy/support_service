@@ -14,18 +14,18 @@ pipenv shell
 
 # Database
 
-```mermaid
-erDiagram
+```mermaiderDiagram
     Users {
-        ind id
-        string fierst_name
+        int id
+        string frist_name
         string last_name
         string email
         string password
         bool is_staff
-        bool is_acrive
+        bool is_active
+        string role
         datetime created_at
-        datetime updatet_at
+        datetime updated_at
     }
     Tickets {
         int id
@@ -34,7 +34,7 @@ erDiagram
         string header
         text body
         datetime created_at
-        datetime updatet_at
+        datetime updated_at
     }
     Comments {
         int id
@@ -43,9 +43,11 @@ erDiagram
         int ticket_id
         text body
         datetime created_at
-        datetime updatet_at
-    
+        datetime updated_at
+    }
+
     Users ||--o{ Tickets : ""
     Tickets ||--o{ Comments : ""
     Comments ||--o{ Comments : ""
+
 ```
