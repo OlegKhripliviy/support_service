@@ -1,3 +1,6 @@
 from django.urls import include, path
 
-urlpatterns = [path("tickets/", include("tickets.urls"))]
+urlpatterns = [
+    path("", include("tickets.urls")),
+    path("", include("comments.urls")),
+]

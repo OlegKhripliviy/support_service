@@ -4,7 +4,7 @@ from tickets.api import TicketAPISet
 
 urlpatterns = [
     path(
-        "",
+        "tickets/",
         TicketAPISet.as_view(
             {
                 "get": "list",
@@ -13,7 +13,7 @@ urlpatterns = [
         ),
     ),
     path(
-        "<int:pk>/",
+        "tickets/<int:pk>/",
         TicketAPISet.as_view(
             {"get": "retrieve", "put": "update", "delete": "destroy"}
         ),

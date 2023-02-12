@@ -1,12 +1,12 @@
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from shared.serializers import ResponseMultiSerializer, ResponseSerializer
 from tickets.models import Ticket
 from tickets.permissions import IsOwner, RoleIsAdmin, RoleIsManager, RoleIsUser
 from tickets.serializers import TicketLightSerializer, TicketSerializer
+from users.constants import Role
 
 
 class TicketAPISet(ModelViewSet):
@@ -16,7 +16,7 @@ class TicketAPISet(ModelViewSet):
         if self.action == "create":
             permission_classes = [RoleIsUser]
         elif self.action == "list":
-            permission_classes = [RoleIsAdmin | RoleIsManager]
+            permission_classes = [RoleIsAdmin | RoleIsManager | RoleIsUser]
         elif self.action == "retrieve":
             permission_classes = (IsOwner | RoleIsAdmin | RoleIsManager,)
         elif self.action == "update":
@@ -38,11 +38,17 @@ class TicketAPISet(ModelViewSet):
         return JsonResponse(response.data, status=status.HTTP_201_CREATED)
 
     def list(self, request, *args, **kwargs):
-        queryset = self.get_queryset()
+        if self.request.user.role == Role.ADMIN:
+            queryset = self.get_queryset()
+        elif self.request.user.role == Role.MANAGER:
+            queryset = Ticket.objects.filter(manager=request.user)
+        else:
+            queryset = Ticket.objects.filter(customer=self.request.user)
+
         serializer = TicketLightSerializer(queryset, many=True)
         response = ResponseMultiSerializer({"results": serializer.data})
 
-        return Response(response.data)
+        return JsonResponse(response.data)
 
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()

@@ -6,5 +6,5 @@ class TimeStampReadonlyAdmin(admin.ModelAdmin):
 
     readonly_fields = _FIELDS
     list_display = ["header", "created_at", "updated_at"]
-    list_filter = _FIELDS
+    list_filter = ["id"]
     search_fields = _FIELDS

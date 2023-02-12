@@ -20,3 +20,5 @@ jobs:
       run: black --check .
     - name: Run isort
       run: isort --check .
+    - name: Run mypy
+      run: mypy .
