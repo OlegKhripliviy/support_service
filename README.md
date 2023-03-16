@@ -12,6 +12,41 @@ pipenv sync --dev
 pipenv shell
 ```
 
+## Run using Docker Compose
+```bash
+docker-compose up -d
+```
+
+## Userful commands
+```bash
+# Build images
+docker-compose build
+
+# Stop containers
+docker-compose down
+
+# Restart containers
+docker-compose restart
+
+# Check containers status
+docker-compose ps
+
+
+## Logs
+
+# get all logs
+docker-compose logs
+
+# get specific logs
+docker-compose logs app
+
+# get limited logs
+docker-compose logs --tail 10 app
+
+# get flowed logs
+docker-compose logs -f app
+```
+
 # Database
 
 ```mermaiderDiagram
